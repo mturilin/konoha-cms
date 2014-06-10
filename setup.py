@@ -49,7 +49,6 @@ setup(
         'funcy',
         'Markdown',
         'django-tools',
-        # 'git+https://github.com/mturilin/import_helpers',
 
     ],
     tests_require=[
@@ -58,6 +57,9 @@ setup(
         'Django',
         'beautifulsoup4',
         'path.py',
+    ],
+      dependency_links=[
+        'git+https://github.com/mturilin/import_helpers',
     ],
     cmdclass={'test': PyTest},
 )
