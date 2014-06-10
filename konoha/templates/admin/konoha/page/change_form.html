@@ -1,0 +1,87 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_static admin_modify %}
+{% load admin_urls %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <style>
+        .error {
+            background-color: #f7afa8;
+        }
+
+        .published {
+            background-color: cyan;
+        }
+
+        a.preview {
+            display: block;
+            float: left;
+            color: white;
+            padding: 0.1em 8px;
+            height: 14px;
+            border-radius: 5px;
+            background: url("../img/tool-right.gif") no-repeat scroll 100% 0px rgb(153, 153, 153);
+        }
+
+        a.button:hover, a.button {
+            color: black;
+        }
+
+        .error_col {
+            max-width: 300px;
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block after_related_objects %}
+    <h2>Versions</h2>
+    <table style="width:100%;">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>User</th>
+            <th>Valid</th>
+            <th class="error_col">Error</th>
+            <th>Preview</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for version in original.versions.all|dictsortreversed:'version'|slice:'10' %}
+            <tr{% if version == original.published_version %} class="published"{% elif not version.valid %}
+                                                              class="error"{% endif %}>
+                <td>{{ version.version }}</td>
+                <td>{{ version.date_created }}</td>
+                <td>{{ version.user }}</td>
+                <td>{{ version.valid }}</td>
+                <td class="error_col">{{ version.error }}</td>
+                <td>
+                    {% if version.valid %}
+                        <a class="preview" href="{{ original.get_absolute_url }}?version={{ version.version }}&preview=true"
+                           target="_blank">Preview</a>
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="button" href="validate_version/{{ version.version }}/">Validate</a>
+
+                    {% if version != original.latest_version %}
+                        <a class="button" href="delete_version/{{ version.version }}/">Delete</a>
+                    {% endif %}
+
+                    {% if version == original.published_version %}
+                        <a class="button" href="unpublish/">Unpublish</a>
+                    {% elif version.valid %}
+                        <a class="button" href="publish_version/{{ version.version }}/">Publish</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
+
