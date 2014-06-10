@@ -29,7 +29,7 @@ setup(
     description='CMS for Django',
     license='MIT',
     url='https://github.com/mturilin/konoha',
-    packages=find_packages(),
+    packages=['konoha'],
     zip_safe=False,
     classifiers=[
         'Environment :: Web Environment',
