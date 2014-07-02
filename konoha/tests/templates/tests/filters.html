@@ -1,0 +1,20 @@
+{% extends 'tests/main.html' %}
+
+
+{% block content %}
+    This is filters page.
+
+    {% filter markdown %}
+        # Title 1
+
+        List:
+
+        - First element
+        - Second element
+        - Third element
+    {% endfilter %}
+
+    {% if testobject is has_attribute('testattribute') %}
+        <h2>has_attribute works</h2>
+    {% endif %}
+{% endblock %}

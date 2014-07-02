@@ -1,0 +1,13 @@
+{% extends 'tests/main.html' %}
+
+{% block content %}
+    This is about page.
+    <ul>
+        {% for color in DATASOURCES.test.colors() %}
+            <li>{{ color }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>{{ DATASOURCES.repeat('BLO', 3) }}</h2>
+
+{% endblock %}
