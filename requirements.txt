@@ -9,6 +9,5 @@ Markdown
 django-tools
 pytest
 pytest-django
-Django
 beautifulsoup4
 path.py
