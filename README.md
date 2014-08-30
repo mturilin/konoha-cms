@@ -1,0 +1,1 @@
+[ ![Codeship Status for mturilin/easyapi](https://www.codeship.io/projects/2e5c6390-11cf-0132-4008-2e82e33412c9/status?branch=master)](https://www.codeship.io/projects/33130)
