@@ -11,3 +11,4 @@ pytest
 pytest-django
 beautifulsoup4
 path.py
+-e git+https://github.com/mturilin/import_helpers#egg=import_helpers

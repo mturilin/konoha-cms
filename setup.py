@@ -11,12 +11,12 @@ import sys
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['tests', '-s']
+        self.test_args = ['konoha/tests', '-s']
         self.test_suite = True
 
     def run_tests(self):
         import pytest
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
+        # os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
         errno = pytest.main(self.test_args)
         sys.exit(errno)
 
